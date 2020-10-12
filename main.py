@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import openpyxl
 import re
 from datetime import datetime
+from datetime import date
 from openpyxl.styles import colors
 from openpyxl.styles import Font
 
@@ -37,7 +38,8 @@ def get_prices():
 def add_day():
     day = int(get_column_from_day())
     with open('day.txt', 'w') as file:
-        file.write(str(day+1))
+        file.write(str(day+1)+'\n')
+        file.write(date.today().strftime("%d/%m/%Y"))
 
 
 def get_column_from_day():
@@ -49,22 +51,28 @@ def get_day_month():
     return f'{datetime.today().day}/{datetime.today().month}'
 
 
+def validate_today_date():
+    with open('day.txt', 'r+') as file:
+        if not file.readlines()[1] < date.today().strftime("%d/%m/%Y"):
+            return 0
+        else: return 1
+
+
 def save_into_sheet():
     font_b = Font(name="Calibri", size=14, color=colors.BLACK)
     font_w = Font(name="Calibri", size=14, color=colors.WHITE)
     col = get_column_from_day()
-    i = 0
     prices = get_prices()
     sheets = openpyxl.load_workbook('sheets.xlsx')
     sheet = sheets.active
     sheet.cell(row=2, column=col).value = get_day_month()
     sheet.cell(row=2, column=col).font = font_w
-    for x in range(3,9):
+    for i, x in enumerate(range(3,9)):
         sheet.cell(row=x, column=col).value = prices[i]
         sheet.cell(row=x, column=col).font = font_b
-        i += 1
     sheets.save('sheets.xlsx')
 
 
-save_into_sheet()
-add_day()
+if validate_today_date():
+    save_into_sheet()
+    add_day()
