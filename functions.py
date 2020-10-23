@@ -74,9 +74,13 @@ def get_day_month():
 
 def validate_today_date():
     with open('day.txt', 'r+') as file:
-        if not file.readlines:
+        try:
+            if not file.readlines:
+                return start_day_file()
+            else:
+                return False if not file.readlines()[1] < date.today().strftime("%d/%m/%Y") else True
+        except IndexError:
             return start_day_file()
-        return False if not file.readlines()[1] < date.today().strftime("%d/%m/%Y") else True
 
 
 def save_into_sheet():
