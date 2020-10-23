@@ -11,6 +11,9 @@ import math
 
 def get_prices():
 
+    # Examples of URLs (⚠️ Kabum may change the urls if they were in sale ⚠️)
+    # when you change the urls, remember to change the name of the row in the sheets.xlsx
+
     urls = ['https://www.kabum.com.br/produto/102249/processador-amd-ryzen-5-3400g-cache-6mb-3-7ghz-4-2ghz-max-turbo-am4-yd3400c5fhbox',
             'https://www.kabum.com.br/produto/95677/placa-mae-asus-ex-a320m-gaming-amd-am4-matx-ddr4',
             'https://www.kabum.com.br/produto/84108/hd-seagate-barracuda-1tb-3-5-sata-st1000dm010?',
@@ -18,6 +21,7 @@ def get_prices():
             'https://www.kabum.com.br/produto/91021/fonte-corsair-450w-80-plus-bronze-cx450-cp-9020120-br',
             'https://www.kabum.com.br/produto/99927/gabinete-gamer-nox-hummer-tgm-rgb-rainbow-4-coolers-lateral-e-frontal-em-vidro-nxhummertgm',
             ]
+
     prices = []
 
     for url in urls:
@@ -37,11 +41,19 @@ def get_prices():
                 price = re.sub('\.', '', price)
                 price = math.ceil(float(re.sub(',', '.', price)))
         except AttributeError:
-            price = 'Erro'
+            price = 'ERROR'
         finally:
             prices.append(price)
 
     return prices
+
+
+def start_day_file():
+    day = 1 
+    with open('day.txt', 'w') as file:
+        file.write(str(day + 1) + '\n')
+        file.write(date.today().strftime("%d/%m/%Y"))
+    return 1
 
 
 def add_day():
@@ -61,17 +73,10 @@ def get_day_month():
 
 
 def validate_today_date():
-    with open('day.txt', 'a+') as file:
-        print(file)
-        if not file.readlines():
-            day = 1
-            with open('day.txt', 'w') as file:
-                file.write(str(day + 1) + '\n')
-                file.write(date.today().strftime("%d/%m/%Y"))
-            return 1
-        elif not file.readlines()[1] < date.today().strftime("%d/%m/%Y"):
-            return 0
-        else: return 1
+    with open('day.txt', 'r+') as file:
+        if not file.readlines:
+            return start_day_file()
+        return False if not file.readlines()[1] < date.today().strftime("%d/%m/%Y") else True
 
 
 def save_into_sheet():
