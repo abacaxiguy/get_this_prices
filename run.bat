@@ -1,4 +1,2 @@
-cd ../../pythonbasico/venv/Scripts
-call activate.bat
-cd ../../../myprojects/get_this_prices
+call venv/Scripts/activate.bat
 python main.py
