@@ -42,6 +42,7 @@ def get_prices():
                 price = math.ceil(float(re.sub(',', '.', price)))
         except AttributeError:
             price = 'ERROR'
+		
         finally:
             prices.append(price)
 
