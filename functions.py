@@ -2,10 +2,9 @@ import requests
 from bs4 import BeautifulSoup
 import openpyxl
 import re
-from datetime import datetime
-from datetime import date
+from datetime import datetime, date
 from openpyxl.styles import colors
-from openpyxl.styles import Font
+from openpyxl.styles import Font, PatternFill
 import math
 
 
@@ -80,7 +79,12 @@ def validate_today_date():
             if not file.readlines:
                 return start_day_file()
             else:
-                return False if not file.readlines()[1] < date.today().strftime("%d/%m/%Y") else True
+                date_from_file = file.readlines()[1]
+                date_from_file = datetime(int(date_from_file[6:]), 
+                                          int(date_from_file[3:5]), 
+                                          int(date_from_file[:2])).date()
+
+                return False if not date_from_file < datetime.now().date() else True
         except IndexError:
             return start_day_file()
 
@@ -88,6 +92,7 @@ def validate_today_date():
 def save_into_sheet():
     font_b = Font(name="Calibri", size=14, color=colors.BLACK)
     font_w = Font(name="Calibri", size=14, color=colors.WHITE)
+    font_w_bold = Font(name="Calibri", size=14, color=colors.WHITE, bold=True)
     col = get_column_from_day()
     prices = get_prices()
     sheets = openpyxl.load_workbook('sheets.xlsx')
@@ -96,5 +101,9 @@ def save_into_sheet():
     sheet.cell(row=2, column=col).font = font_w
     for i, x in enumerate(range(3,10)):
         sheet.cell(row=x, column=col).value = prices[i]
-        sheet.cell(row=x, column=col).font = font_b
+        if i == 1 or i == 2:
+            sheet.cell(row=x, column=col).font = font_w_bold
+            sheet.cell(row=x, column=col).fill = PatternFill("solid", fgColor="00FF0000")
+        else:
+            sheet.cell(row=x, column=col).font = font_b
     sheets.save('sheets.xlsx')
