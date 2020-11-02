@@ -20,6 +20,7 @@ def get_prices():
             'https://www.kabum.com.br/produto/91021/fonte-corsair-450w-80-plus-bronze-cx450-cp-9020120-br',
             'https://www.kabum.com.br/produto/99927/gabinete-gamer-nox-hummer-tgm-rgb-rainbow-4-coolers-lateral-e-frontal-em-vidro-nxhummertgm',
             'https://www.kabum.com.br/cgi-local/site/produtos/descricao_ofertas.cgi?codigo=100626',
+            'https://www.kabum.com.br/cgi-local/site/produtos/descricao_ofertas.cgi?codigo=111939',
             ]
 
     prices = []
@@ -99,7 +100,7 @@ def save_into_sheet():
     sheet = sheets.active
     sheet.cell(row=2, column=col).value = get_day_month()
     sheet.cell(row=2, column=col).font = font_w
-    for i, x in enumerate(range(3,10)):
+    for i, x in enumerate(range(3,11)):
         sheet.cell(row=x, column=col).value = prices[i]
         if i == 1 or i == 2:
             sheet.cell(row=x, column=col).font = font_w_bold
