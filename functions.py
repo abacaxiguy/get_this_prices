@@ -15,11 +15,11 @@ def get_prices():
 
     urls = ['https://www.kabum.com.br/produto/102249/processador-amd-ryzen-5-3400g-cache-6mb-3-7ghz-4-2ghz-max-turbo-am4-yd3400c5fhbox',
             'https://www.kabum.com.br/produto/95677/placa-mae-asus-ex-a320m-gaming-amd-am4-matx-ddr4',
-            'https://www.kabum.com.br/produto/84108/hd-seagate-barracuda-1tb-3-5-sata-st1000dm010?',
+            'https://www.kabum.com.br/cgi-local/site/produtos/descricao_ofertas.cgi?codigo=84108',
             'https://www.kabum.com.br/cgi-local/site/produtos/descricao_ofertas.cgi?codigo=103547',
             'https://www.kabum.com.br/produto/91021/fonte-corsair-450w-80-plus-bronze-cx450-cp-9020120-br',
             'https://www.kabum.com.br/produto/99927/gabinete-gamer-nox-hummer-tgm-rgb-rainbow-4-coolers-lateral-e-frontal-em-vidro-nxhummertgm',
-            'https://www.kabum.com.br/cgi-local/site/produtos/descricao_ofertas.cgi?codigo=100626',
+            'https://www.kabum.com.br/produto/100626/teclado-gamer-dazz-rapid-fire-revolution-rainbow-abnt2-625203',
             'https://www.kabum.com.br/cgi-local/site/produtos/descricao_ofertas.cgi?codigo=111939',
             ]
 
@@ -43,7 +43,6 @@ def get_prices():
                 price = math.ceil(float(re.sub(',', '.', price)))
         except AttributeError:
             price = 'ERROR'
-            get_prices()
         finally:
             prices.append(price)
 
