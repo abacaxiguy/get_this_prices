@@ -42,7 +42,7 @@ def get_prices():
                 price = re.sub('\.', '', price)
                 price = math.ceil(float(re.sub(',', '.', price)))
         except AttributeError:
-            price = 0
+            price = "INDISPONÍVEL"
         finally:
             prices.append(price)
 
