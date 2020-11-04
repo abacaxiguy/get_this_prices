@@ -20,7 +20,7 @@ def get_prices():
             'https://www.kabum.com.br/produto/91021/fonte-corsair-450w-80-plus-bronze-cx450-cp-9020120-br',
             'https://www.kabum.com.br/produto/99927/gabinete-gamer-nox-hummer-tgm-rgb-rainbow-4-coolers-lateral-e-frontal-em-vidro-nxhummertgm',
             'https://www.kabum.com.br/produto/100626/teclado-gamer-dazz-rapid-fire-revolution-rainbow-abnt2-625203',
-            'https://www.kabum.com.br/cgi-local/site/produtos/descricao_ofertas.cgi?codigo=111939',
+            'https://www.kabum.com.br/produto/111939/monitor-lg-led-19-5-hdmi-vga-2ms-ajuste-de-inclinacao-20mk400h-b',
             ]
 
     prices = []
@@ -42,7 +42,7 @@ def get_prices():
                 price = re.sub('\.', '', price)
                 price = math.ceil(float(re.sub(',', '.', price)))
         except AttributeError:
-            price = 'ERROR'
+            price = 0
         finally:
             prices.append(price)
 
