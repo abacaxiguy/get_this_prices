@@ -32,6 +32,8 @@ call venv/Scripts/deactivate.bat
 
 After installing the dependencies, just double-click the [run.bat](/run.bat) and it will fill the [spreadsheet](/sheets.xlsx) (that is pre-organized to fill max 6 products from kabum).
 
+<img alt="Spreadsheet" src="https://github.com/abacaxiguy/get_this_prices/blob/master/readme_screenshot.png" />
+
 ---
 
 ## 👨‍💻 How to change the products
