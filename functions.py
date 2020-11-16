@@ -17,10 +17,11 @@ def get_prices():
             'https://www.kabum.com.br/produto/95677/placa-mae-asus-ex-a320m-gaming-amd-am4-matx-ddr4',
             'https://www.kabum.com.br/cgi-local/site/produtos/descricao_ofertas.cgi?codigo=84108',
             'https://www.kabum.com.br/cgi-local/site/produtos/descricao_ofertas.cgi?codigo=103547',
-            'https://www.kabum.com.br/produto/91021/fonte-corsair-450w-80-plus-bronze-cx450-cp-9020120-br',
+            'https://www.kabum.com.br/produto/102248/processador-amd-ryzen-3-3200g-cache-4mb-3-6ghz-4ghz-max-turbo-am4-yd3200c5fhbox',
             'https://www.kabum.com.br/produto/99927/gabinete-gamer-nox-hummer-tgm-rgb-rainbow-4-coolers-lateral-e-frontal-em-vidro-nxhummertgm',
             'https://www.kabum.com.br/produto/100626/teclado-gamer-dazz-rapid-fire-revolution-rainbow-abnt2-625203',
             'https://www.kabum.com.br/produto/111939/monitor-lg-led-19-5-hdmi-vga-2ms-ajuste-de-inclinacao-20mk400h-b',
+            'https://www.kabum.com.br/produto/91021/fonte-corsair-450w-80-plus-bronze-cx450-cp-9020120-br',
             ]
 
     prices = []
@@ -101,7 +102,7 @@ def save_into_sheet():
     sheet.cell(row=2, column=col).font = font_w
     for i, x in enumerate(range(3,11)):
         sheet.cell(row=x, column=col).value = prices[i]
-        if i == 1 or i == 2:
+        if i >= 0 and i < 4:
             sheet.cell(row=x, column=col).font = font_w_bold
             sheet.cell(row=x, column=col).fill = PatternFill("solid", fgColor="00FF0000")
         else:
