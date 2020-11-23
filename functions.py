@@ -102,7 +102,7 @@ def save_into_sheet():
     sheet.cell(row=2, column=col).font = font_w
     for i, x in enumerate(range(3,12)):
         sheet.cell(row=x, column=col).value = prices[i]
-        if i >= 0 and i < 4:
+        if (i >= 0 and i < 4) or i==6:
             sheet.cell(row=x, column=col).font = font_w_bold
             sheet.cell(row=x, column=col).fill = PatternFill("solid", fgColor="00FF0000")
         else:
